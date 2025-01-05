@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Byte</title>
+    <link rel="stylesheet" href="shrija.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            background-image: url('https://tse1.mm.bing.net/th?id=OIP.BHxm8NWxcBvT45P7GQUbowHaCx&pid=Api&P=0&h=220');
+        background-size: cover; /* Ensure the image covers the entire header */
+        background-position: center; /* Center the image within the header */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        color: red; /* Set text color to white for contrast */
+        height: 400px; /* Adjust the height of the header */
+        padding: 50px 20px; /* Add padding for text spacing */
+        text-align: center; /* Center-align the text */
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.5rem; /* Increase font size for visibility */
+        font-weight: bold;
+        position: relative;  /* Enable positioning for overlay effects */
+    }
+
+    header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:white(253, 251, 251, 0.5); /* Add a semi-transparent overlay for better text visibility */
+        z-index: 1;
+    }
+
+    header h1 {
+        position: relative; /* Position text above the overlay */
+        z-index: 2; /* Ensure text is above the overlay */
+        margin: 0; /* Remove default margins */
+    }
+
+
+        nav {
+            background-color: rgb(240, 12, 12);
+            padding: 5px;
+            text-align: center;
+        }
+
+        nav a {
+            color: blue;
+            text-decoration: none;
+            padding: 25px;
+            margin: 0 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        section {
+        background-image: url('https://tse4.mm.bing.net/th?id=OIP.lTfy0E2wf7F7V21ofQJfDgHaE8&pid=Api&P=0&h=220'); /* Replace with your desired image URL */
+        background-size: cover; /* Ensures the image covers the entire section */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        padding: 50px; /* Adds padding for spacing */
+        color: white; /* Sets text color for contrast */
+    }
+
+    section h2 {
+        text-align: center; /* Centers the heading text */
+        margin-bottom: 20px; /* Adds spacing below the heading */
+    }
+
+        .dish {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dish img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: blue;
+            color: white;
+            margin: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+        }
+
+        .form-container {
+            display: none;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .order-confirmation {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Delicious Food for Every Palate</h1>
+       
+        
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Menu</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section >
+        <h2>Featured Dishes</h2>
+
+        <div class="dish" data-name="Pizza Marinara" data-price="99">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.ZZsn6lD6PCjocBzx1tuu1QHaEo&pid=Api&P=0&h=220" alt="Pizza Marinara">
+            <h3>Pizza Marinara</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.99</p>
+        </div>
+
+        <div class="dish" data-name="Masala Stuffed Pizza" data-price="159">
+            <img src="https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?cs=srgb&dl=artesanal-pizza-cheese-close-up-1566837.jpg&fm=jpg" alt="Masala Stuffed Pizza">
+            <h3>Masala Stuffed Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.159</p>
+        </div>
+
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://images7.alphacoders.com/434/434468.jpg" alt="California Pizza">
+            <h3>Veggie Supreme Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.199</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://cdn.loveandlemons.com/wp-content/uploads/2023/02/vegetarian-pizza-1024x1024.jpg" alt="California Pizza">
+            <h3>BBQ Chicken Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.189</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.R-AOBfjWUoWDICzZbhiZKgHaFj&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Hawaiian Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.169</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.5ss0Np4_jqHlZAkJsGsrTQHaFj&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Meat Lovers Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.299</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.6J9AK6FtCXWgS7joZSRV5AHaE8&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Seafood Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.299</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.Jo1yQsDA0jVfJzFUA345fQHaE8&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Paneer Tikka Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.399</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://assets.afcdn.com/recipe/20160519/15342_w3072h2304c1cx3504cy2338.jpg" alt="California Pizza">
+            <h3>Mediterranean Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.359</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://pastafrescasaigon.com/wp-content/uploads/2023/05/quan-pizza-ngon-o-dau-an-pizza-loai-nao-ngon-nhat-6-scaled.jpg" alt="California Pizza">
+            <h3>Spinach and Feta Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.389</p>
+        </div> <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.wvXJ_qqoQ4jVuH06PJCPXwHaGG&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Caprese Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.499</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.f3U4kmyaRR9IMCnfgdZekQHaEK&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Sausage and Onion Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.399</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://images7.alphacoders.com/370/370706.jpg" alt="California Pizza">
+            <h3>Sausage and Onion Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.369</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.rgFCUn-JTc1kKo_8f00cTAHaE7&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Garlic Ranch Chicken Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.799</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.-Jwc1Wxo0oIoBNvz9bv9TwHaFH&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Smoked Salmon Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.699</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://images.healthshots.com/healthshots/en/uploads/2023/02/09155200/pizza-1.jpg" alt="California Pizza">
+            <h3>White Pizza (Bianca)</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.199</p>
+        </div> <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://dallas.culturemap.com/media-library/taste-of-chicago-pizza.jpg?id=32364668&width=2000&height=1500&quality=85&coordinates=1%2C0%2C1%2C0" alt="California Pizza">
+            <h3>Zesty Jalapeño Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.399</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://s.hdnux.com/photos/01/33/23/22/23934134/3/rawImage.jpg" alt="California Pizza">
+            <h3>Caprese Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+             <p>Only Rs.299</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://wallup.net/wp-content/uploads/2017/11/22/371886-food-pizza.jpg" alt="California Pizza">
+            <h3>Spicy Peri-Peri Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.399</p>
+        </div>
+         <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://wallup.net/wp-content/uploads/2017/11/17/371885-food-pizza.jpg" alt="California Pizza">
+            <h3>Peri-Peri Pizza</h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.299</p>
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://images3.alphacoders.com/104/thumb-1920-1041781.jpg" alt="California Pizza">
+            <h3>Breakfast Pizza </h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.499</p>
+        </div>
+                <div class="dish" data-name="California Pizza" data-price="199">
+                    <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" alt="California Pizza">
+                    <h3>Greek Pizza</h3>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="order-now">Order Now</button>
+                    <p>Only Rs.899</p>
+                </div>
+                <div class="dish" data-name="California Pizza" data-price="199">
+                    <img src="https://motionarray.imgix.net/preview-534442-MxAY8cqUywlMzBx7-large.jpg?w=3840&q=60&fit=max&auto=format" alt="California Pizza">
+                    <h3>Pulled Pork Pizza</h3>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="order-now">Order Now</button>
+                    <p>Only Rs.399</p>
+                
+        </div>
+        <div class="dish" data-name="California Pizza" data-price="199">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.GAmevX0neaN48ZZMc0CK-wHaHV&pid=Api&P=0&h=220" alt="California Pizza">
+            <h3>Chicken Alfredo Pizza </h3>
+            <button class="add-to-cart">Add to Cart</button>
+            <button class="order-now">Order Now</button>
+            <p>Only Rs.299</p>
+        </div>
+    </section>
+
+    <div id="orderForm" class="form-container" style="display: none;">
+        <h2>Place Your Order</h2>
+        <form>
+            <label for="selectedDish">Selected Dish:</label>
+            <input type="text" id="selectedDish" name="selectedDish" readonly>
+    
+            <label for="customerName">Name:</label>
+            <input type="text" id="customerName" name="customerName" required>
+    
+            <label for="contactNumber">Contact Number:</label>
+            <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+    
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Select Payment Method</option>
+                <option value="creditCard">Credit Card</option>
+                <option value="debitCard">Debit Card</option>
+                <option value="upi">UPI</option>
+                <option value="cod">Cash on Delivery</option>
+            </select>
+    
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+    
+    <div id="orderConfirmation" class="order-confirmation" style="display: none;">
+        <h2>Order Placed!</h2>
+        <p>Thank you for your order. Enjoy your meal!</p>
+    </div>
+    
+    <script>
+        const cart = [];
+    
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const dishElement = e.target.closest('.dish');
+                const dishName = dishElement.dataset.name;
+                const dishPrice = dishElement.dataset.price;
+    
+                cart.push({ name: dishName, price: parseFloat(dishPrice) });
+                alert(`"${dishName}" added to cart. Price: Rs.${dishPrice}`);
+            });
+        });
+    
+        // Order now functionality with scrolling to the form
+        document.querySelectorAll('.order-now').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const dishElement = e.target.closest('.dish');
+                const dishName = dishElement.dataset.name;
+    
+                // Display the order form
+                const orderForm = document.getElementById('orderForm');
+                orderForm.style.display = 'block';
+    
+                // Set the selected dish in the form
+                document.getElementById('selectedDish').value = dishName;
+    
+                // Scroll to the form
+                orderForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    
+        // Submit order functionality
+        document.querySelector('#orderForm form').addEventListener('submit', (e) => {
+            e.preventDefault();
+    
+            const name = document.getElementById('customerName').value;
+            const contactNumber = document.getElementById('contactNumber').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+    
+            if (!paymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+    
+            alert(`Order placed successfully!\n\nName: ${name}\nContact: ${contactNumber}\nEmail: ${email}\nAddress: ${address}\nPayment Method: ${paymentMethod}\nItems: ${cart.map(item => item.name).join(', ')}`);
+    
+            // Hide the form and show the confirmation message
+            document.getElementById('orderForm').style.display = 'none';
+            const orderConfirmation = document.getElementById('orderConfirmation');
+            orderConfirmation.style.display = 'block';
+    
+            // Clear the form and cart
+            document.querySelector('#orderForm form').reset();
+            cart.length = 0; // Clear the cart
+        });
+    </script>
+    
+</body>
+</html>
